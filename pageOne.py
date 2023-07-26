@@ -9,6 +9,8 @@ wb = load_workbook('sample.xlsx')
 # Select the active worksheet
 ws = wb.active
 
+# Basic read in of all the inputs that are needed for the xlsx file
+
 
 def update_excel():
     # Retrieve the input as a string and convert it to an integer
