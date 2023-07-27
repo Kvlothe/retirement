@@ -4,6 +4,10 @@ from basicInfo import basic_info_window
 from currentProfile import current_profile_window
 from socialSecurity import social_security_window
 from pension import pension_input_window
+from inputs import inputs_window
+from oneTimeExpenses import one_time_window
+from medical import medical_window
+from assumptions import assumptions_window
 import openpyxl
 
 
@@ -22,7 +26,7 @@ class LoadCreateWindow:
         self.load_button.pack()
 
     def load_or_create_profile(self):
-        # global wb, ws, username  # declare them as global so we can access them later
+        # global wb, ws, username  # declare them as global, so we can access them later
         username = self.name_entry.get()
         filename = f'{username}.xlsx'
         if os.path.exists(filename):

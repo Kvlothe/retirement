@@ -1,8 +1,6 @@
 from datetime import datetime
 from tkinter import ttk
-import openpyxl
 import tkinter as tk
-
 
 # def main_menu_window():
 #     global main_window
@@ -47,11 +45,11 @@ def update_basic_info(wb, ws, username):
     wb.save(f'{username}.xlsx')
 
 
-def basic_info_window(window, wb, ws, username):
-    global main_window, year_entry, age_entry, retirement_age_combo, ss_s1_combo, ss_s2_combo, pension_s1_combo, pension_s2_combo, other_income_s1_combo, other_income_s2_combo
-    basic_window = tk.Tk()
+def basic_info_window(basic_window, wb, ws, username):
+    global year_entry, age_entry, retirement_age_combo, ss_s1_combo, ss_s2_combo, pension_s1_combo, pension_s2_combo, other_income_s1_combo, other_income_s2_combo
+
+    # basic_window = tk.Tk()
     basic_window.geometry("400x500")
-    # Here you can add your widgets that display the info from the loaded workbook.
 
     # Create a Label and an Entry for Current Year
     year_label = tk.Label(basic_window, text="Current Year:")
