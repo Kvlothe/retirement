@@ -2,11 +2,28 @@ from datetime import datetime
 from tkinter import ttk
 import openpyxl
 import tkinter as tk
-from main import main_men_window
+
+
+# def main_menu_window():
+#     global main_window
+#     main_window = tk.Tk()
+#     main_window.geometry("400x400")
+#     # basic = tk.Button(main_window, text="Basic info", command=basicInfo.basic_info_window)
+#     basic = tk.Button(main_window, text="Basic info", command=lambda: basicInfo.basic_info_window(wb, ws, username))
+#     basic.pack()
+#     # current = tk.Button(main_window, text="Current Profile", command=currentProfile.current_profile_window)
+#     current = tk.Button(main_window, text="Current Profile", command=lambda: currentProfile.current_profile_window(wb, ws, username))
+#     current.pack()
+#     social_security = tk.Button(main_window, text='Social Security', command=socialSecurity.security_window)
+#     social_security.pack()
+#     pension = tk.Button(main_window, text="Pension (Monthly)", command=pension.pension_window)
+#     pension.pack()
+#     estimated_expenses = tk.Button(main_window, text="Estimated Expenses", command=estimatedExpenses.expenses_window)
+#     estimated_expenses.pack()
 
 
 def update_basic_info(wb, ws, username):
-    global main_men_window.main_window
+    # global main_window
     current_year = year_entry.get()
     age = age_entry.get()
     retirement_age = retirement_age_combo.get()
@@ -28,12 +45,10 @@ def update_basic_info(wb, ws, username):
     ws['E10'] = other_income_s2
 
     wb.save(f'{username}.xlsx')
-    basic_window.destroy()  # Close the basic info window
-    main_men_window.main_window()  # Open the main menu again
 
 
-def basic_info_window(wb, ws, username):
-    global main_men_window.main_window, year_entry, age_entry, retirement_age_combo, ss_s1_combo, ss_s2_combo, pension_s1_combo, pension_s2_combo, other_income_s1_combo, other_income_s2_combo
+def basic_info_window(window, wb, ws, username):
+    global main_window, year_entry, age_entry, retirement_age_combo, ss_s1_combo, ss_s2_combo, pension_s1_combo, pension_s2_combo, other_income_s1_combo, other_income_s2_combo
     basic_window = tk.Tk()
     basic_window.geometry("400x500")
     # Here you can add your widgets that display the info from the loaded workbook.
@@ -106,5 +121,3 @@ def basic_info_window(wb, ws, username):
     year_entry.insert(0, str(current_year))
 
     basic_window.mainloop()
-    basic_window.destroy()
-    main_men_window.main_window()

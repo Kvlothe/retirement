@@ -10,9 +10,9 @@ def update_current_profile():
     ws['C19'] = after_tax
 
 
-def current_profile_window():
+def current_profile_window(window, wb, ws, username):
     global main_window, pre_tax_entry, after_tax_entry
-    current_window = tk.Tk()
+    current_window = tk.Toplevel(main_window)
     current_window.geometry("400x400")
 
     # Create Label and Entry for Current Portfolio
@@ -28,5 +28,3 @@ def current_profile_window():
     submit_current.pack()
 
     current_profile_window.mainloop()
-    current_window.destroy()
-    main_menu_window()
