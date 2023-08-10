@@ -8,6 +8,8 @@ from inputs import inputs_window
 from oneTimeExpenses import one_time_window
 from medical import medical_window
 from assumptions import assumptions_window
+from growthAndInvestments import growth_and_assumptions_window
+from growthBeforeRetirement import growth_before_retirement_window
 import openpyxl
 
 
@@ -63,6 +65,10 @@ class MainWindow:
         self.medical_button.pack()
         self.assumptions_button = tk.Button(self.root, text="Assumptions", command=self.open_assumptions_window)
         self.assumptions_button.pack()
+        self.growth_button = tk.Button(self.root, text="Growth and Investments", command=self.open_growth_investments_window)
+        self.growth_button.pack()
+        self.growth_before_button = tk.Button(self.root, text="Growth before Retirement", command=self.open_growth_before_window)
+        self.growth_before_button.pack()
 
 # Method for Basic Information Window
     def open_basic_window(self):
@@ -103,6 +109,14 @@ class MainWindow:
     def open_medical_window(self):
         medical_input_window = tk.Toplevel(self.root)
         medical_window(medical_input_window, self.wb, self.ws, self.username)
+
+    def open_growth_investments_window(self):
+        growth_button_window = tk.Toplevel(self.root)
+        growth_and_assumptions_window(growth_button_window, self.wb, self.ws, self.username)
+
+    def open_growth_before_window(self):
+        growth_before_button = tk.Toplevel(self.root)
+        growth_before_retirement_window(growth_before_button, self.wb, self.ws, self.username)
 
 # Method for closing windows
     def close(self):
@@ -175,6 +189,29 @@ class InputsWindow:
         self.root.destroy()
 
 
+class ToolTip:
+    def __init__(self, widget, text):
+        self.widget = widget
+        self.text = text
+        self.tooltip = None
+        self.widget.bind("<Enter>", self.enter)
+        self.widget.bind("<Leave>", self.leave)
+
+    def enter(self, event=None):
+        x, y, _, _ = self.widget.bbox("insert")
+        x += self.widget.winfo_rootx() + 25
+        y += self.widget.winfo_rooty() + 25
+        self.tooltip = tk.Toplevel(self.widget)
+        self.tooltip.wm_overrideredirect(True)
+        self.tooltip.wm_geometry(f"+{x}+{y}")
+        label = tk.Label(self.tooltip, text=self.text, bg="yellow", relief=tk.SOLID, borderwidth=1)
+        label.pack(ipadx=1)
+
+    def leave(self, event=None):
+        if self.tooltip:
+            self.tooltip.destroy()
+
+
 # Class for the One Time Expenses Window
 class OneTimeWindow:
     def __init__(self, root):
@@ -208,6 +245,28 @@ class AssumptionsWindow:
         assumptions_window(self.root)
         self.button = tk.Button(self.root, text="Close", command=self.close)
         self.button.pack()
+
+    def close(self):
+        self.root.master.deiconify()
+        self.root.destroy()
+
+
+class GrowthWindow:
+    def __init__(self, root):
+        self.root = root
+        growth_and_assumptions_window(self.root)
+        self.button = tk.Button(self.root, text="Close", command=self.close)
+
+    def close(self):
+        self.root.master.deiconify()
+        self.root.destroy()
+
+
+class GrowthBeforeWindow:
+    def __init(self, root):
+        self.root = root
+        growth_before_retirement_window(self.root)
+        self.button = tk.Button(self.root, text="Close", command=self.close)
 
     def close(self):
         self.root.master.deiconify()
