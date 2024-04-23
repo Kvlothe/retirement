@@ -35,7 +35,7 @@ class LoadCreateWindow:
             wb = openpyxl.load_workbook(filename)
             print(f"Loaded existing profile for {username}")
         else:
-            wb = openpyxl.load_workbook('Sample.xlsx')
+            wb = openpyxl.load_workbook('sample.xlsx')
             print(f"Created new profile for {username}")
         ws = wb.active
         self.root.destroy()  # This will close the current window
